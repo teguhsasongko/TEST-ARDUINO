@@ -18,20 +18,26 @@ Serial.println("Program started");
 lcd.init(); // initialize the lcd 
 dht.begin();
   // Print a message to the LCD.
-  lcd.backlight();
-  lcd.setBacklight(HIGH);
+lcd.backlight();
+lcd.setBacklight(HIGH);
 }
 
 void loop()
 {
   //DHT22
   float h = dht.readHumidity(); //measure humidity
+  String myString = "";
+  myString.concat(h);
+  
   float t = dht.readTemperature(); //measure temperature
+  String myStringe = "";
+  myStringe.concat(t);
+  
   if (isnan(h) || isnan(t)) { //Check. If the reading fails, then "Read error" is displayed and the program exits
     Serial.println("Reading error");
     return;
     }
-    lcd.setCursor(0,0);
+  lcd.setCursor(0,0);
   lcd.print("Temperature: ");
   lcd.print(t);
   lcd.print(" *C\t");
